@@ -57,7 +57,7 @@ namespace GettingStartedWindowsStoreAppDev
 
         public const string PageStateOutputTextBlockTextKey = "PageStateOutputTextBlock.Text";
 
-        public const string LocalSettingsInputTextBoxTextKey = "LocalSettingsStateOutputTextBlock.Text";
+        public const string LocalSettingsInputTextBoxTextKey = "LocalSettingsStateInputTextBox.Text";
         public const string LocalSettingsOutputTextBlockTextKey = "LocalSettingsStateOutputTextBlock.Text";
 
 
@@ -72,11 +72,6 @@ namespace GettingStartedWindowsStoreAppDev
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
             e.PageState[PageStateOutputTextBlockTextKey] = PageStateOutputTextBlock.Text;
-
-            ApplicationData.Current.LocalSettings.Values[LocalSettingsInputTextBoxTextKey] =
-                LocalSettingsInputTextBox.Text;
-            ApplicationData.Current.LocalSettings.Values[LocalSettingsOutputTextBlockTextKey] =
-                LocalSettingsOutputTextBlock.Text;
         }
 
 
@@ -99,7 +94,7 @@ namespace GettingStartedWindowsStoreAppDev
             }
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(LocalSettingsInputTextBoxTextKey))
             {
-                LocalSettingsOutputTextBlock.Text =
+                LocalSettingsInputTextBox.Text =
                     (string)ApplicationData.Current.LocalSettings.Values[LocalSettingsInputTextBoxTextKey];
             }
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(LocalSettingsOutputTextBlockTextKey))
@@ -135,22 +130,6 @@ namespace GettingStartedWindowsStoreAppDev
 
         #endregion
 
-        private void PopulatePageStateOutputTextBlockButton_Click(object sender, RoutedEventArgs e)
-        {
-            PageStateOutputTextBlock.Text = "PageStateOutputTextBlock.Text == \"" + PageStateInputTextBox.Text + "\".";
-        }
-
-        private void PopulateLocalSettingsOutputTextBlockButton_Click(object sender, RoutedEventArgs e)
-        {
-            var text = string.Empty;
-            if (!string.Equals(LocalSettingsInputTextBox.Text, string.Empty))
-            {
-                text = "LocalSettingsOutputTextBlock.Text == \"" +
-                                                    LocalSettingsInputTextBox.Text + "\".";
-            }
-            LocalSettingsOutputTextBlock.Text = text;
-        }
-
         private void PageBetaHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(PageBeta));
@@ -159,6 +138,33 @@ namespace GettingStartedWindowsStoreAppDev
         private void PageGammaHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(PageGamma));
+        }
+
+        private void LocalSettingsInputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var curText = LocalSettingsInputTextBox.Text;
+            var newText = string.Empty;
+            if (!string.Equals(curText, string.Empty))
+            {
+                newText = "LocalSettingsOutputTextBlock.Text == \"" + curText + "\"";
+            }
+            LocalSettingsOutputTextBlock.Text = newText;
+
+            ApplicationData.Current.LocalSettings.Values[LocalSettingsInputTextBoxTextKey] =
+                LocalSettingsInputTextBox.Text;
+            ApplicationData.Current.LocalSettings.Values[LocalSettingsOutputTextBlockTextKey] =
+                LocalSettingsOutputTextBlock.Text;
+        }
+
+        private void PageStateInputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var curText = PageStateInputTextBox.Text;
+            var newText = string.Empty;
+            if (!string.Equals(curText, string.Empty))
+            {
+                newText = "PageStateOutputTextBlock.Text == \"" + curText + "\"";
+            }
+            PageStateOutputTextBlock.Text = newText;
         }
     }
 }
