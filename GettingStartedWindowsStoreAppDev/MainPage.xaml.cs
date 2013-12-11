@@ -92,6 +92,7 @@ namespace GettingStartedWindowsStoreAppDev
             {
                 PageStateOutputTextBlock.Text = (string)e.PageState[PageStateOutputTextBlockTextKey];
             }
+
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(LocalSettingsInputTextBoxTextKey))
             {
                 LocalSettingsInputTextBox.Text =

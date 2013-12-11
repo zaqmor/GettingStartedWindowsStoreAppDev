@@ -7,6 +7,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,6 +34,33 @@ namespace GettingStartedWindowsStoreAppDev
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            base.OnWindowCreated(args);
+
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+        }
+
+        /// <summary>
+        /// Handler for the CommandsRequested event. Add custom SettingsCommands here.
+        /// </summary>
+        /// <param name="e">Event data that includes a vector of commands (ApplicationCommands)</param>
+        void OnCommandsRequested(SettingsPane settingsPane, SettingsPaneCommandsRequestedEventArgs e)
+        {
+            var about =  new SettingsCommand("about", "About",
+                (handler) =>
+                {
+                    var settings = new SettingsFlyout();
+                    settings.Content = new AboutUserControl();
+                    settings.HeaderForeground = new SolidColorBrush(Colors.White);
+                    settings.HeaderBackground = new SolidColorBrush(Colors.Purple);
+                    settings.IsEnabled = true;
+                    settings.Show();
+                });
+
+            e.Request.ApplicationCommands.Add(about);
         }
 
         /// <summary>
