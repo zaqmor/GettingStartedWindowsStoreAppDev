@@ -68,4 +68,17 @@
             <HyperlinkButton x:Name="PageGammaHyperlinkButton" Content="Actually, PageGamma is the bomb-diggity!" Click="PageGammaHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource PageGammaRedBrush}" />
         </StackPanel>
     </Grid>
+
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="BottomCommandBar">
+            <AppBarButton Label="Refresh" Icon="Refresh" Click="AppBarRefreshButton_Click"/>
+            <!--<AppBarButton Label="Help" Icon="Help" Click="AppBarHelpButton_Click"/>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Forward" Icon="Remove" Click="AppBarForwardButton_Click"/>
+                <AppBarButton Label="Back" Icon="Add" Click="AppBarBackButton_Click"/>
+            </CommandBar.SecondaryCommands>-->
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

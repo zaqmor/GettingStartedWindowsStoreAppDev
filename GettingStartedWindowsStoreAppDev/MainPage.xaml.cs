@@ -167,5 +167,29 @@ namespace GettingStartedWindowsStoreAppDev
             }
             PageStateOutputTextBlock.Text = newText;
         }
+
+        private void AppBarRefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null)
+            {
+                rootFrame.Navigate(rootFrame.CurrentSourcePageType);
+            }
+        }
+
+        private void AppBarHelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AppBarForwardButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AppBarBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
