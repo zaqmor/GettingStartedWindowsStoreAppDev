@@ -21,7 +21,7 @@ namespace GettingStartedWindowsStoreAppDev
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class AnotherPage : Page
+    public sealed partial class PageBeta : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace GettingStartedWindowsStoreAppDev
         }
 
 
-        public AnotherPage()
+        public PageBeta()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -102,5 +102,15 @@ namespace GettingStartedWindowsStoreAppDev
         }
 
         #endregion
+
+        private void MainPageHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PageBetaHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

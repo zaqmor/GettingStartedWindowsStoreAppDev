@@ -21,7 +21,7 @@ namespace GettingStartedWindowsStoreAppDev
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class PageGamma : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace GettingStartedWindowsStoreAppDev
         }
 
 
-        public MainPage()
+        public PageGamma()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -103,19 +103,14 @@ namespace GettingStartedWindowsStoreAppDev
 
         #endregion
 
-        private void ClickMeButton_Click(object sender, RoutedEventArgs e)
+        private void MainPageHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            OutputTextBlock.Text = "You input \"" + InputTextBox.Text + "\" and then clicked that button.";
+            throw new NotImplementedException();
         }
 
         private void PageBetaHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(PageBeta));
-        }
-
-        private void PageGammaHyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(PageGamma));
+            throw new NotImplementedException();
         }
     }
 }

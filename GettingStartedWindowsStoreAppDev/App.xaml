@@ -2,8 +2,7 @@
     x:Class="GettingStartedWindowsStoreAppDev.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:GettingStartedWindowsStoreAppDev"
-    RequestedTheme="Light">
+    xmlns:local="using:GettingStartedWindowsStoreAppDev">
     <Application.Resources>
         <x:Double x:Key="BigFontSize">28</x:Double>
         <Style x:Key="BigTextBlockStyle" TargetType="TextBlock">
@@ -35,6 +34,10 @@
             <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
             <Setter Property="Foreground" Value="DarkRed"/>
         </Style>
+        <SolidColorBrush x:Key="PageBetaGreenBrush" Color="#FF277E1E"/>
+        <SolidColorBrush x:Key="MainPageBlueBrush" Color="#FF448BA6"/>
+        <SolidColorBrush x:Key="PageGammaRedBrush" Color="#FFAC1A1A"/>
+        <SolidColorBrush x:Key="BettyWhiteBrush" Color="White"/>
     </Application.Resources>
 
 </Application>
