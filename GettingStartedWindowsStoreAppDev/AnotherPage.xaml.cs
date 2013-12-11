@@ -21,7 +21,7 @@ namespace GettingStartedWindowsStoreAppDev
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AnotherPage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace GettingStartedWindowsStoreAppDev
         }
 
 
-        public MainPage()
+        public AnotherPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -102,10 +102,5 @@ namespace GettingStartedWindowsStoreAppDev
         }
 
         #endregion
-
-        private void ClickMeButton_Click(object sender, RoutedEventArgs e)
-        {
-            OutputTextBlock.Text = "You input \"" + InputTextBox.Text + "\" and then clicked that button.";
-        }
     }
 }
