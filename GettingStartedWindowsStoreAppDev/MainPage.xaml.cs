@@ -1,4 +1,5 @@
-﻿using GettingStartedWindowsStoreAppDev.Common;
+﻿using Windows.Storage;
+using GettingStartedWindowsStoreAppDev.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,7 @@ namespace GettingStartedWindowsStoreAppDev
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+        
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
@@ -53,6 +54,32 @@ namespace GettingStartedWindowsStoreAppDev
             this.navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
+
+        public const string PageStateOutputTextBlockTextKey = "PageStateOutputTextBlock.Text";
+
+        public const string LocalSettingsInputTextBoxTextKey = "LocalSettingsStateOutputTextBlock.Text";
+        public const string LocalSettingsOutputTextBlockTextKey = "LocalSettingsStateOutputTextBlock.Text";
+
+
+        /// <summary>
+        /// Preserves state associated with this page in case the application is suspended or the
+        /// page is discarded from the navigation cache.  Values must conform to the serialization
+        /// requirements of <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
+        /// <param name="e">Event data that provides an empty dictionary to be populated with
+        /// serializable state.</param>
+        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
+            e.PageState[PageStateOutputTextBlockTextKey] = PageStateOutputTextBlock.Text;
+
+            ApplicationData.Current.LocalSettings.Values[LocalSettingsInputTextBoxTextKey] =
+                LocalSettingsInputTextBox.Text;
+            ApplicationData.Current.LocalSettings.Values[LocalSettingsOutputTextBlockTextKey] =
+                LocalSettingsOutputTextBlock.Text;
+        }
+
+
         /// <summary>
         /// Populates the page with content passed during navigation. Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -66,18 +93,23 @@ namespace GettingStartedWindowsStoreAppDev
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-        }
-
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
-        /// <param name="e">Event data that provides an empty dictionary to be populated with
-        /// serializable state.</param>
-        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
-        {
+            if (e.PageState != null && e.PageState.ContainsKey(PageStateOutputTextBlockTextKey))
+            {
+                PageStateOutputTextBlock.Text = (string)e.PageState[PageStateOutputTextBlockTextKey];
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(LocalSettingsInputTextBoxTextKey))
+            {
+                LocalSettingsOutputTextBlock.Text =
+                    (string)ApplicationData.Current.LocalSettings.Values[LocalSettingsInputTextBoxTextKey];
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(LocalSettingsOutputTextBlockTextKey))
+            {
+                if (!string.Equals(LocalSettingsInputTextBox.Text, string.Empty))
+                {
+                    LocalSettingsOutputTextBlock.Text =
+                        (string)ApplicationData.Current.LocalSettings.Values[LocalSettingsOutputTextBlockTextKey];
+                }
+            }
         }
 
         #region NavigationHelper registration
@@ -103,9 +135,20 @@ namespace GettingStartedWindowsStoreAppDev
 
         #endregion
 
-        private void ClickMeButton_Click(object sender, RoutedEventArgs e)
+        private void PopulatePageStateOutputTextBlockButton_Click(object sender, RoutedEventArgs e)
         {
-            OutputTextBlock.Text = "You input \"" + InputTextBox.Text + "\" and then clicked that button.";
+            PageStateOutputTextBlock.Text = "PageStateOutputTextBlock.Text == \"" + PageStateInputTextBox.Text + "\".";
+        }
+
+        private void PopulateLocalSettingsOutputTextBlockButton_Click(object sender, RoutedEventArgs e)
+        {
+            var text = string.Empty;
+            if (!string.Equals(LocalSettingsInputTextBox.Text, string.Empty))
+            {
+                text = "LocalSettingsOutputTextBlock.Text == \"" +
+                                                    LocalSettingsInputTextBox.Text + "\".";
+            }
+            LocalSettingsOutputTextBlock.Text = text;
         }
 
         private void PageBetaHyperlinkButton_Click(object sender, RoutedEventArgs e)

@@ -105,12 +105,12 @@ namespace GettingStartedWindowsStoreAppDev
 
         private void MainPageHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.Frame.Navigate(typeof (MainPage));
         }
 
         private void PageBetaHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.Frame.Navigate(typeof (PageBeta));
         }
     }
 }

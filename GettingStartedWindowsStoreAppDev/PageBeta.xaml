@@ -55,8 +55,8 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="120,30,0,0">
-            <HyperlinkButton x:Name="MainPageHyperlinkButton" Content="It's a TRAP! Go back to the MainPage!" Click="MainPageHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource MainPageBlueBrush}" />
-            <HyperlinkButton x:Name="PageGammaHyperlinkButton" Content="Seriously, consider visiting PageGamma :)" Click="PageBetaHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource PageGammaRedBrush}" />
+            <HyperlinkButton x:Name="MainPageHyperlinkButton" Content="It's a TRAP! Go to the MainPage!" Click="MainPageHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource MainPageBlueBrush}" />
+            <HyperlinkButton x:Name="PageGammaHyperlinkButton" Content="Seriously, consider visiting PageGamma :)" Click="PageGammaHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource PageGammaRedBrush}" />
         </StackPanel>
 
     </Grid>

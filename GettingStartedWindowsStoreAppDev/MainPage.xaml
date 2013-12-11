@@ -49,11 +49,22 @@
 
         <StackPanel Grid.Row="1" Margin="120,30,0,0">
             <TextBlock Text="Go ahead and input something below..." Style="{StaticResource BigTextBlockStyle}"/>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
-                <TextBox x:Name="InputTextBox" Width="300" HorizontalAlignment="Left"/>
-                <Button Content="Click me!" Click="ClickMeButton_Click"/>
+
+            <StackPanel Orientation="Vertical" Margin="0,5,0,30">
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBox x:Name="PageStateInputTextBox" Width="300" HorizontalAlignment="Left"/>
+                    <Button Content="Populate PageStateOutputTextBlock" Click="PopulatePageStateOutputTextBlockButton_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="PageStateOutputTextBlock" Margin="0,3,0,3" Style="{StaticResource BigTextBlockStyleRed}"/>
             </StackPanel>
-            <TextBlock x:Name="OutputTextBlock" Style="{StaticResource BigTextBlockStyleRed}"/>
+
+            <StackPanel Orientation="Vertical" Margin="0,5,0,30">
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBox x:Name="LocalSettingsInputTextBox" Width="300" HorizontalAlignment="Left"/>
+                    <Button Content="Populate LocalSettingsOutputTextBlock" Click="PopulateLocalSettingsOutputTextBlockButton_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="LocalSettingsOutputTextBlock"  Margin="0,3,0,3" Style="{StaticResource BigTextBlockStyleRed}"/>
+            </StackPanel>
 
             <HyperlinkButton x:Name="PageBetaHyperlinkButton" Content="I'm bored here, let's go to PageBeta." Click="PageBetaHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource PageBetaGreenBrush}" />
             <HyperlinkButton x:Name="PageGammaHyperlinkButton" Content="Actually, PageGamma is the bomb-diggity!" Click="PageGammaHyperlinkButton_Click" FontSize="18" Foreground="{StaticResource BettyWhiteBrush}" Background="{StaticResource PageGammaRedBrush}" />
