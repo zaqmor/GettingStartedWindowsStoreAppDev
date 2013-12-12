@@ -36,33 +36,6 @@ namespace GettingStartedWindowsStoreAppDev
             this.Suspending += OnSuspending;
         }
 
-        protected override void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            base.OnWindowCreated(args);
-
-            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
-        }
-        
-        /// <summary>
-        /// Handler for the CommandsRequested event. Add custom SettingsCommands here.
-        /// </summary>
-        /// <param name="e">Event data that includes a vector of commands (ApplicationCommands)</param>
-        void OnCommandsRequested(SettingsPane settingsPane, SettingsPaneCommandsRequestedEventArgs e)
-        {
-            var about =  new SettingsCommand("about", "About",
-                (handler) =>
-                {
-                    var settings = new SettingsFlyout();
-                    settings.Content = new AboutUserControl();
-                    settings.HeaderForeground = new SolidColorBrush(Colors.White);
-                    settings.HeaderBackground = new SolidColorBrush(Colors.Purple);
-                    settings.IsEnabled = true;
-                    settings.Show();
-                });
-
-            e.Request.ApplicationCommands.Add(about);
-        }
-
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -132,8 +105,36 @@ namespace GettingStartedWindowsStoreAppDev
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            
+            // NOTE: We have been saving application state IMMEDIATELY, 
+            // otherwise we would save anything we haven't already saved HERE
             deferral.Complete();
+        }
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            base.OnWindowCreated(args);
+
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+        }
+
+        /// <summary>
+        /// Handler for the CommandsRequested event. Add custom SettingsCommands here.
+        /// </summary>
+        /// <param name="e">Event data that includes a vector of commands (ApplicationCommands)</param>
+        void OnCommandsRequested(SettingsPane settingsPane, SettingsPaneCommandsRequestedEventArgs e)
+        {
+            var about = new SettingsCommand("about", "About",
+                (handler) =>
+                {
+                    var settings = new SettingsFlyout();
+                    settings.Content = new AboutUserControl();
+                    settings.HeaderForeground = new SolidColorBrush(Colors.White);
+                    settings.HeaderBackground = new SolidColorBrush(Colors.Purple);
+                    settings.IsEnabled = true;
+                    settings.Show();
+                });
+
+            e.Request.ApplicationCommands.Add(about);
         }
     }
 }
