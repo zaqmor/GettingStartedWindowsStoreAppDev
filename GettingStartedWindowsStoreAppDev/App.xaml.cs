@@ -42,7 +42,7 @@ namespace GettingStartedWindowsStoreAppDev
 
             SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
         }
-
+        
         /// <summary>
         /// Handler for the CommandsRequested event. Add custom SettingsCommands here.
         /// </summary>
